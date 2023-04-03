@@ -1,11 +1,12 @@
 import React from "react";
 import Pagination from "@mui/material/Pagination";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { SECONDARY_COLOR } from "../../config/colors";
 
 const darkTheme = createTheme({
   palette: {
     primary: {
-      main: "#2d313a",
+      main: SECONDARY_COLOR
     },
   },
   components: {
@@ -19,7 +20,15 @@ const darkTheme = createTheme({
   },
 });
 
-export default function CustomPagination({ setPage, numOfPages = 10 }: any) {
+type CustomPaginationProps = {
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  numOfPages?: number;
+};
+
+export default function CustomPagination({
+  setPage,
+  numOfPages = 10,
+}: CustomPaginationProps) {
   // Scroll to top when page changes
   const handlePageChange = (page: number) => {
     setPage(page);
@@ -40,7 +49,9 @@ export default function CustomPagination({ setPage, numOfPages = 10 }: any) {
         <Pagination
           variant="outlined"
           shape="rounded"
-          onChange={(e: any) => handlePageChange(e.target.textContent)}
+          onChange={(e: React.ChangeEvent<unknown>, page: number) =>
+            handlePageChange(page)
+          }
           count={numOfPages}
           size="large"
         />

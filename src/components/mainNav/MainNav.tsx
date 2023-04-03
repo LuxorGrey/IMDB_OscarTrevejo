@@ -8,6 +8,7 @@ import * as React from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./mainNav.css";
+import { SECONDARY_COLOR } from "../../config/colors";
 
 export default function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);
@@ -32,11 +33,11 @@ export default function SimpleBottomNavigation() {
         width: "100%",
         position: "fixed",
         bottom: 0,
-        backgroundColor: "#2d313a",
+        backgroundColor: SECONDARY_COLOR,
         zIndex: 100,
       }}
       value={value}
-      onChange={(event: any, newValue: number) => {
+      onChange={(event: React.ChangeEvent<{}>, newValue: number) => {
         setValue(newValue);
       }}
       showLabels

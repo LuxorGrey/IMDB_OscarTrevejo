@@ -9,11 +9,13 @@ import {
   unavailable,
   unavailableLandscape,
 } from "../../config/config";
+import { ContentProps } from "../../config/types";
 import Carousel from "../carousel/Carousel";
 import GuestSession from "../guestSession/Guest";
 import "./ContentModal.css";
+import { PRIMARY_COLOR, SECONDARY_COLOR } from "../../config/colors";
 
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles(() => ({
   modal: {
     display: "flex",
     alignItems: "center",
@@ -22,14 +24,18 @@ const useStyles = makeStyles((theme: any) => ({
   paper: {
     width: "90%",
     height: "80%",
-    backgroundColor: "#39445a",
+    backgroundColor: PRIMARY_COLOR,
     border: "1px solid #282c34",
     borderRadius: 10,
     color: "white",
   },
 }));
 
-export default function ContentModal({ children, media_type, id }: any) {
+export default function ContentModal({
+  children,
+  media_type,
+  id,
+}: ContentProps) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState<any>([]);
@@ -69,7 +75,7 @@ export default function ContentModal({ children, media_type, id }: any) {
     <>
       <div
         className="media"
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", backgroundColor: SECONDARY_COLOR }}
         color="inherit"
         onClick={handleOpen}
       >
@@ -128,7 +134,7 @@ export default function ContentModal({ children, media_type, id }: any) {
                 <Button
                   variant="contained"
                   startIcon={<YouTubeIcon />}
-                  style={{ backgroundColor: "#2d313a", color: "white" }}
+                  style={{ backgroundColor: SECONDARY_COLOR, color: "white" }}
                   target="__blank"
                   href={`https://www.youtube.com/watch?v=${video}`}
                 >

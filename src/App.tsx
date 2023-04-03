@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/header/Header";
 import SimpleBottomNavigation from "./components/mainNav/MainNav";
+import { BACKGROUND_COLOR } from "./config/colors";
 import Movies from "./pages/movies/Movies";
 import Search from "./pages/search/Search";
 import Series from "./pages/series/Series";
@@ -11,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <div className="App">
+      <div className="App" style={{ backgroundColor: BACKGROUND_COLOR }}>
         <Container>
           <Routes>
             <Route path="/" Component={Trending} />

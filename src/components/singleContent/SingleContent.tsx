@@ -1,7 +1,8 @@
 import Badge from "@mui/material/Badge";
 import { img_300, unavailable } from "../../config/config";
-import "./SingleContent.css";
+import { SingleContentProps } from "../../config/types";
 import ContentModal from "../contentModal/ContentModal";
+import "./SingleContent.css";
 
 const SingleContent = ({
   id,
@@ -10,12 +11,14 @@ const SingleContent = ({
   date,
   media_type,
   vote_average,
-}: any) => {
+}: SingleContentProps) => {
   return (
-    <ContentModal media_type={media_type} id={id} >
+    <ContentModal media_type={media_type} id={id}>
       <Badge
-        badgeContent={vote_average}
-        color={vote_average > 6 ? "primary" : "secondary"}
+        badgeContent={vote_average.toFixed(1)}
+        color={
+          vote_average > 7 ? "success" : vote_average > 4 ? "warning" : "error"
+        }
       />
       <img
         className="poster"

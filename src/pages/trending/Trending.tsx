@@ -3,6 +3,8 @@ import "./Trending.css";
 import { useEffect, useState } from "react";
 import SingleContent from "../../components/singleContent/SingleContent";
 import CustomPagination from "../../components/pagination/Pagination";
+import { ResponseData } from "../../config/types";
+import { SECONDARY_COLOR } from "../../config/colors";
 
 const Trending = () => {
   const [page, setPage] = useState(1);
@@ -26,10 +28,10 @@ const Trending = () => {
 
   return (
     <div>
-      <span className="pageTitle">Trending Today</span>
+      <span className="pageTitle" style={{ backgroundColor: SECONDARY_COLOR }}>Trending Today</span>
       <div className="trending">
         {content &&
-          content.map((c: any) => (
+          content.map((c: ResponseData) => (
             <SingleContent
               key={c.id}
               id={c.id}

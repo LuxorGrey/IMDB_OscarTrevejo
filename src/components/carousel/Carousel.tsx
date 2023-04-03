@@ -4,14 +4,15 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { img_300, noPicture } from "../../config/config";
 import "./Carousel.css";
+import { CastData, GalleryProps } from "../../config/types";
 
 const handleDragStart = (e: React.DragEvent<HTMLDivElement>) =>
   e.preventDefault();
 
-const Gallery = ({ id, media_type }: any) => {
+const Gallery = ({ id, media_type }: GalleryProps) => {
   const [credits, setCredits] = useState([]);
 
-  const items = credits.map((c: any) => (
+  const items = credits.map((c: CastData) => (
     <div className="carouselItem">
       <img
         src={c.profile_path ? `${img_300}/${c.profile_path}` : noPicture}

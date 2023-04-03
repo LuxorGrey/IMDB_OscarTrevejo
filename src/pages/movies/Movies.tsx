@@ -4,15 +4,17 @@ import Genres from "../../components/genres/Genres";
 import SingleContent from "../../components/singleContent/SingleContent";
 import useGenre from "../../hooks/useGenre";
 import CustomPagination from "../../components/pagination/Pagination";
+import { GenreIndividual, ResponseData } from "../../config/types";
+import { SECONDARY_COLOR } from "../../config/colors";
 
 const Movies = () => {
-  const [genres, setGenres] = useState([]);
-  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [genres, setGenres] = useState<GenreIndividual[]>([]);
+  const [selectedGenres, setSelectedGenres] = useState<GenreIndividual[]>([]);
   const [page, setPage] = useState(1);
-  const [content, setContent] = useState([]);
+  const [content, setContent] = useState<ResponseData[]>([]);
   const [numOfPages, setNumOfPages] = useState(0);
   const genreforURL = useGenre(selectedGenres);
-  // console.log(selectedGenres);
+
   const fetchMovies = async () => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreforURL}`
@@ -29,7 +31,9 @@ const Movies = () => {
 
   return (
     <div>
-      <span className="pageTitle">Discover Movies</span>
+      <span className="pageTitle" style={{ backgroundColor: SECONDARY_COLOR }}>
+        Discover Movies
+      </span>
       <Genres
         type="movie"
         selectedGenres={selectedGenres}
@@ -40,7 +44,7 @@ const Movies = () => {
       />
       <div className="trending">
         {content &&
-          content.map((c: any) => (
+          content.map((c: ResponseData) => (
             <SingleContent
               key={c.id}
               id={c.id}

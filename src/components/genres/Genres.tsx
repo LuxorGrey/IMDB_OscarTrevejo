@@ -1,6 +1,7 @@
 import Chip from "@mui/material/Chip";
 import axios from "axios";
 import { useEffect } from "react";
+import { GenreData, GenreIndividual } from "../../config/types";
 
 const Genres = ({
   selectedGenres,
@@ -9,24 +10,24 @@ const Genres = ({
   setGenres,
   type,
   setPage,
-}: any) => {
-  const handleAdd = (genre: any) => {
+}: GenreData) => {
+  const handleAdd = (genre: GenreIndividual) => {
     setSelectedGenres([...selectedGenres, genre]);
-    setGenres(genres.filter((g: any) => g.id !== genre.id));
+    setGenres(genres.filter((g: GenreIndividual) => g.id !== genre.id));
     setPage(1);
   };
- 
 
-  const handleRemove = (genre: any) => {
+  const handleRemove = (genre: GenreIndividual) => {
     setSelectedGenres(
-      selectedGenres.filter((selected: any) => selected.id !== genre.id)
+      selectedGenres.filter(
+        (selected: GenreIndividual) => selected.id !== genre.id
+      )
     );
     setGenres([...genres, genre]);
     setPage(1);
   };
 
   const fetchGenres = async () => {
-    console.log("A");
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/genre/${type}/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
@@ -44,7 +45,7 @@ const Genres = ({
 
   return (
     <div style={{ padding: "6px 0" }}>
-      {selectedGenres.map((genre: any) => (
+      {selectedGenres.map((genre: GenreIndividual) => (
         <Chip
           style={{ margin: 2, color: "white" }}
           label={genre.name}
@@ -55,7 +56,7 @@ const Genres = ({
           onDelete={() => handleRemove(genre)}
         />
       ))}
-      {genres?.map((genre: any) => (
+      {genres?.map((genre: GenreIndividual) => (
         <Chip
           style={{ margin: 2, color: "white" }}
           label={genre.name}

@@ -4,10 +4,12 @@ import Genres from "../../components/genres/Genres";
 import CustomPagination from "../../components/pagination/Pagination";
 import SingleContent from "../../components/singleContent/SingleContent";
 import useGenre from "../../hooks/useGenre";
+import { GenreIndividual, ResponseData } from "../../config/types";
+import { SECONDARY_COLOR } from "../../config/colors";
 
 const Series = () => {
-  const [genres, setGenres] = useState([]);
-  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [genres, setGenres] = useState<GenreIndividual[]>([]);
+  const [selectedGenres, setSelectedGenres] = useState<GenreIndividual[]>([]);
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([]);
   const [numOfPages, setNumOfPages] = useState(0);
@@ -19,7 +21,6 @@ const Series = () => {
     );
     setContent(data.results);
     setNumOfPages(data.total_pages);
-    // console.log(data);
   };
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const Series = () => {
 
   return (
     <div>
-      <span className="pageTitle">Discover Series</span>
+      <span className="pageTitle" style={{ backgroundColor: SECONDARY_COLOR }}>Discover Series</span>
       <Genres
         type="tv"
         selectedGenres={selectedGenres}
@@ -41,7 +42,7 @@ const Series = () => {
       />
       <div className="trending">
         {content &&
-          content.map((c: any) => (
+          content.map((c: ResponseData) => (
             <SingleContent
               key={c.id}
               id={c.id}
