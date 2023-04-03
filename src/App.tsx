@@ -1,12 +1,12 @@
-import React from "react";
+import { Container } from "@mui/material";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/header/Header";
 import SimpleBottomNavigation from "./components/mainNav/MainNav";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Container } from "@mui/material";
-import Trending from "./pages/trending/Trending";
 import Movies from "./pages/movies/Movies";
+import Search from "./pages/search/Search";
 import Series from "./pages/series/Series";
+import Trending from "./pages/trending/Trending";
 function App() {
   return (
     <BrowserRouter>
@@ -17,7 +17,7 @@ function App() {
             <Route path="/" Component={Trending} />
             <Route path="/movies" Component={Movies} />
             <Route path="/series" Component={Series} />
-            {/* <Route path="/search" component={Search} /> */}
+            <Route path="/search" Component={Search} />
           </Routes>
         </Container>
       </div>

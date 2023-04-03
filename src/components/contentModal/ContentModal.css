@@ -20,8 +20,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
-  width: 100%;
+  height: 95%;
+  width: 95%;
   overflow-y: scroll;
   scrollbar-width: none;
 }
@@ -31,19 +31,19 @@
 }
 
 .ContentModal__about {
-  padding: 10px;
+  padding: 5px;
   width: 95%;
   height: 90%;
   display: flex;
   flex-direction: column;
   font-family: "Roboto", sans-serif;
   justify-content: space-evenly;
-  font-weight: 300;
+  font-weight: 200;
 }
 
 .ContentModal__title {
-  height: 12%;
-  font-size: 5vw;
+font-weight: bold;
+  font-size: 2vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,7 +83,9 @@
     height: 100%;
   }
   .ContentModal__title {
-    font-size: 3.5vw;
+    font-weight: bold;
+    font-size: 2vw;
+    
   }
   .ContentModal__description {
     font-size: 22px;

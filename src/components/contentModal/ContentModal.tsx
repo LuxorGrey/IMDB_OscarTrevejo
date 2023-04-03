@@ -10,6 +10,7 @@ import {
   unavailableLandscape,
 } from "../../config/config";
 import Carousel from "../carousel/Carousel";
+import GuestSession from "../guestSession/Guest";
 import "./ContentModal.css";
 
 const useStyles = makeStyles((theme: any) => ({
@@ -25,8 +26,6 @@ const useStyles = makeStyles((theme: any) => ({
     border: "1px solid #282c34",
     borderRadius: 10,
     color: "white",
-    // boxShadow: theme.shadows[5],
-    // padding: theme.spacing(1, 1, 3),
   },
 }));
 
@@ -35,7 +34,7 @@ export default function ContentModal({ children, media_type, id }: any) {
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState<any>([]);
   const [video, setVideo] = useState();
-  const REACT_APP_API_KEY = "8f781d70654b5a6f2fa69770d1d115a3";
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -46,7 +45,7 @@ export default function ContentModal({ children, media_type, id }: any) {
 
   const fetchData = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${REACT_APP_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
 
     setContent(data);
@@ -54,7 +53,7 @@ export default function ContentModal({ children, media_type, id }: any) {
 
   const fetchVideo = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/${media_type}/${id}/videos?api_key=${REACT_APP_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/${media_type}/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
 
     setVideo(data.results[0]?.key);
@@ -125,11 +124,11 @@ export default function ContentModal({ children, media_type, id }: any) {
                 <div>
                   <Carousel id={id} media_type={media_type} />
                 </div>
-
+                <GuestSession id={id} />
                 <Button
                   variant="contained"
                   startIcon={<YouTubeIcon />}
-                  color="secondary"
+                  style={{ backgroundColor: "#2d313a", color: "white" }}
                   target="__blank"
                   href={`https://www.youtube.com/watch?v=${video}`}
                 >

@@ -5,11 +5,12 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { img_300, noPicture } from "../../config/config";
 import "./Carousel.css";
 
-const handleDragStart = (e: any) => e.preventDefault();
+const handleDragStart = (e: React.DragEvent<HTMLDivElement>) =>
+  e.preventDefault();
 
 const Gallery = ({ id, media_type }: any) => {
   const [credits, setCredits] = useState([]);
-  const REACT_APP_API_KEY = "8f781d70654b5a6f2fa69770d1d115a3";
+
   const items = credits.map((c: any) => (
     <div className="carouselItem">
       <img
@@ -36,7 +37,7 @@ const Gallery = ({ id, media_type }: any) => {
 
   const fetchCredits = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/${media_type}/${id}/credits?api_key=${REACT_APP_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/${media_type}/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
     setCredits(data.cast);
   };

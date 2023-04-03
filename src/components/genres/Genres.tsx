@@ -15,7 +15,7 @@ const Genres = ({
     setGenres(genres.filter((g: any) => g.id !== genre.id));
     setPage(1);
   };
-  const REACT_APP_API_KEY = "8f781d70654b5a6f2fa69770d1d115a3";
+ 
 
   const handleRemove = (genre: any) => {
     setSelectedGenres(
@@ -28,7 +28,7 @@ const Genres = ({
   const fetchGenres = async () => {
     console.log("A");
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/genre/${type}/list?api_key=${REACT_APP_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/genre/${type}/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
     setGenres(data.genres);
   };
@@ -46,7 +46,7 @@ const Genres = ({
     <div style={{ padding: "6px 0" }}>
       {selectedGenres.map((genre: any) => (
         <Chip
-          style={{ margin: 2 }}
+          style={{ margin: 2, color: "white" }}
           label={genre.name}
           key={genre.id}
           color="primary"
@@ -57,7 +57,7 @@ const Genres = ({
       ))}
       {genres?.map((genre: any) => (
         <Chip
-          style={{ margin: 2 }}
+          style={{ margin: 2, color: "white" }}
           label={genre.name}
           key={genre.id}
           clickable

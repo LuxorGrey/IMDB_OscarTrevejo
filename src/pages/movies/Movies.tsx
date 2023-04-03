@@ -13,10 +13,9 @@ const Movies = () => {
   const [numOfPages, setNumOfPages] = useState(0);
   const genreforURL = useGenre(selectedGenres);
   // console.log(selectedGenres);
-  const REACT_APP_API_KEY = "8f781d70654b5a6f2fa69770d1d115a3";
   const fetchMovies = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreforURL}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreforURL}`
     );
     setContent(data.results);
     setNumOfPages(data.total_pages);
